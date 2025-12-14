@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запис до лікаря</title>
+    <link rel="stylesheet" href="a_f.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../3653045.png">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <div class="logo-circle">
+            <i class="fas fa-hand-holding-medical logo-icon"></i>
+        </div>
+        <h1>Запис до лікаря</h1>
+    </div>
+    <nav class="nav">
+        <a href="mailto:pigol.tanya@lll.kpi.ua" class="nav-link">Зв'язатися з нами</a>
+        <a href="../main-L2.html" class="nav-link">Головна</a>
+        <a href="#" class="nav-link">Послуги</a>
+    </nav>
+</header>
+
+<main class="main-content">
+    <form class="appointment-form">
+        <div class="form-group">
+            <label for="surname">Ваше прізвище</label>
+            <input type="text" id="surname" name="surname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Ваше ім'я</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Дата прийому</label>
+            <input type="date" id="date" name="date" min="" required>
+        </div>
+
+        <div class="form-group">
+            <label for="time">Час прийому</label>
+            <select id="time" name="time">
+                <option value="" disabled selected>Оберіть час</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="service">Послуга, яка Вам потрібна</label>
+            <select id="service" name="service" required>
+                <option value="" >Оберіть послугу</option>
+                <option value="consultation_ter">Консультація терапевта</option>
+                <option value="consultation_gyn">Консультація гінеколога</option>
+                <option value="consultation_sur">Консультація хірурга</option>
+                <option value="appointment_cardio">Прийом кардіолога</option>
+                <option value="ultrasound">УЗД органів черевної порожнини</option>
+                <option value="blood_test">Загальний аналіз крові</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-button">Підтвердити</button>
+    </form>
+    <script>
+        function getTodayDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+
+            return `${year}-${month}-${day}`;
+        }
+
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            dateInput.min = getTodayDate();
+        }
+
+
+        function createTimeOption(hour, minute) {
+            const formattedHour = String(hour).padStart(2, '0');
+            const formattedMinute = String(minute).padStart(2, '0');
+            const timeValue = `${formattedHour}:${formattedMinute}`;
+
+            const option = document.createElement('option');
+            option.value = timeValue;
+            option.textContent = timeValue;
+            return option;
+        }
+
+        const timeSelect = document.getElementById('time');
+        const startTime = 8;
+        const endTime = 20;
+        const stepMinutes = 5;
+
+        if (timeSelect) {
+            for (let hour = startTime; hour <= endTime; hour++) {
+                for (let minute = 0; minute < 60; minute += stepMinutes) {
+                    if (hour === endTime && minute > 0) {
+                        break;
+                    }
+
+                    const option = createTimeOption(hour, minute);
+                    timeSelect.appendChild(option);
+                }
+            }
+        }
+
+
+        const form = document.querySelector('.appointment-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const surname = document.getElementById('surname').value;
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            const serviceSelect = document.getElementById('service');
+            const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text;
+
+            const fileContent =
+                `=== НОВИЙ ЗАПИС ДО ЛІКАРЯ ===
+Прізвище: ${surname}
+Ім'я: ${name}
+Дата: ${date}
+Час: ${time}
+Послуга: ${serviceText}
+Дата створення заявки: ${new Date().toLocaleString('uk-UA')}
+=============================`;
+
+            const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+            const link = document.createElement("a");
+
+            link.href = URL.createObjectURL(blob);
+            link.download = `Zapys_${surname}_${date}.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            alert("Ваш запис сформовано у файл!");
+        });
+    </script>
+</main>
+
+<footer class="footer">
+    <div class="footer-links-container">
+        <a href="https://www.instagram.com/" class="footer-link">Instagram</a>
+        <a href="https://www.facebook.com/" class="footer-link">Facebook</a>
+        <a href="mailto:pigol.tanya@lll.kpi.ua" class="footer-link">email</a>
+    </div>
+</footer>
+
+</body>
+</html>
