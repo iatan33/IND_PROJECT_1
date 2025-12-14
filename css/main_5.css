@@ -1,0 +1,272 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+h2 {
+    color: #810B0B;
+    border-bottom: 2px solid #810B0B;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+#contact-us {
+    font-weight: bold;
+}
+#logo-section {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.logo-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #810B0B;
+    background-color: #eeeeee;
+}
+.clinic-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+#appointment-button {
+    background-color: #810B0B;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+#appointment-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+header {
+    background-color: #810B0B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+.nav-link {
+    color: white;
+    font-size: 1.1rem;
+    margin-left: 20px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+.nav-link:hover {
+    opacity: 1;
+}
+
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 30px;
+}
+.left-column {
+    flex: 2;
+}
+.right-column {
+    flex: 1;
+    min-width: 300px;
+}
+.info-block {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.content-box {
+    border: 1px solid #810B0B;
+    padding: 15px;
+    border-radius: 5px;
+}
+.doctor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.doctor-card {
+    display: flex;
+    align-items: center;
+}
+.doctor-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #810B0B;
+}
+.role {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 2px;
+}
+.details-link {
+    text-align: right;
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+.schedule-block {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.schedule-title {
+    color: #810B0B;
+    font-size: 1.5rem;
+    margin-top: 0;
+    border-bottom: none;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+.weekend {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+footer {
+    background-color: #810B0B;
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1rem;
+    margin-top: 40px;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    display: none; /* Приховано */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: 'Roboto', sans-serif;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    header {
+        padding: 10px 30px;
+    }
+
+    main {
+        padding: 0 15px;
+        gap: 20px;
+    }
+
+    .clinic-name {
+        font-size: 1.3rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    nav {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-link {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    main {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 15px;
+        margin-top: 20px;
+    }
+
+    .left-column,
+    .right-column {
+        flex: auto;
+        min-width: unset;
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 20px;
+    }
+}
